@@ -1,0 +1,50 @@
+<resources>
+    <string name="app_name">MyStory</string>
+    <string name="login">Login</string>
+    <string name="started_sub_title">Mari memulai cerita anda dengan kami bersama teman, rekan dan keluarga. Abadikan momen tercinta anda disini.</string>
+    <string name="get_starting">Get Starting With MyStory App</string>
+    <string name="todo">TODO</string>
+    <string name="register">register</string>
+    <string name="btn_login">LOGIN</string>
+    <string name="btn_register">REGISTER</string>
+    <string name="login_title">Login to app</string>
+    <string name="login_sub_title">
+        <font color="#f5745d"><b>Login</b></font>
+        if you already have an account
+    </string>
+    <string name="login_email">Your email or username</string>
+    <string name="login_password">Your password</string>
+    <string name="login_forgot_pw">Forgot Password?</string>
+    <string name="login_havent_account">
+        I don\'t have an account
+        <font color="#f5745d"> Register </font>
+    </string>
+    <string name="register_title">Create an account</string>
+
+    <string name="register_sub_title">
+        <font color="#f5745d"><b>Register</b></font>
+        to get started with the app
+    </string>
+    <string name="login_have_account">
+        I already have an account
+        <font color="#f5745d"><b>Login</b></font>
+    </string>
+    <string name="register_fullname">Your full name</string>
+    <string name="register_email">Your email</string>
+    <string name="confirm_password">Confirm your password</string>
+    <string name="open_camera">Open Camera</string>
+    <string name="open_galerry">Open galerry</string>
+    <string name="open_gallery">Open gallery</string>
+    <string name="add_story">Add new story</string>
+    <string name="logout">logout</string>
+    <string name="story_name">name of story</string>
+    <string name="hi_welcome">Hi, Welcome to MyStory App</string>
+    <string name="welcome">Welcome to MyStory App</string>
+    <string name="description">Description</string>
+    <string name="img">TODO</string>
+    <string name="setting">Setting</string>
+    <string name="keluar">Logout</string>
+    <string name="button_for_capture_image">Button for capture image</string>
+    <string name="switch_camera">button for switch front or rear camera</string>
+    <string name="desc_photo">Description</string>
+</resources>
