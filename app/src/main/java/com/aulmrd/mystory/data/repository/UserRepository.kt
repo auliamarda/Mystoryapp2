@@ -63,8 +63,9 @@ class UserRepository private constructor(
 
     suspend fun logout() {
         dataStore.edit { preferences ->
-            preferences[TOKEN] = ""
-            preferences[STATE_KEY] = false
+//            preferences[TOKEN] = ""
+//            preferences[STATE_KEY] = false
+            preferences.clear()
         }
     }
 

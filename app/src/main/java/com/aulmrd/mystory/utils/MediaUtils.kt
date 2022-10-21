@@ -14,7 +14,7 @@ object MediaUtils {
 
     fun createTempFile(context: Context): File {
         val storageDir: File? = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
-        return File.createTempFile( ".jpg", storageDir.toString())
+        return File.createTempFile( "test",".jpg", storageDir)
     }
 
     fun uriToFile(selectedImg: Uri, context: Context): File {

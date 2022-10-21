@@ -6,34 +6,47 @@ import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Button
+import androidx.lifecycle.ViewModelProvider
 import com.aulmrd.mystory.databinding.ActivityMainBinding
+import com.aulmrd.mystory.ui.factory.FactoryUserViewModel
+import com.aulmrd.mystory.ui.home.Home
 import com.aulmrd.mystory.ui.login.LoginActivity
 import com.aulmrd.mystory.ui.register.RegisterActivity
+import kotlinx.coroutines.*
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var btnMasuk1 : Button
-    private lateinit var btnMasuk2 : Button
+    private lateinit var viewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val factoryUserViewModel: FactoryUserViewModel = FactoryUserViewModel.getInstance(this)
+        viewModel = ViewModelProvider(this, factoryUserViewModel) [MainViewModel::class.java]
+
         setupView()
-        setupAction()
         playAnimation()
 
-        btnMasuk1 = findViewById(R.id.btn_masuk1)
-        btnMasuk1.setOnClickListener(this)
+        binding.btnMasuk1.setOnClickListener(this)
+        binding.btnMasuk2.setOnClickListener(this)
 
-        btnMasuk2 = findViewById(R.id.btn_masuk2)
-        btnMasuk2.setOnClickListener(this)
+        CoroutineScope(Dispatchers.Main).launch {
+            delay(1500)
+            viewModel.getToken().observe(this@MainActivity) {
+                if (it != null)
+                    Intent(this@MainActivity, Home::class.java).apply {
+                        startActivity(this)
+                    }
+            }
+        }
 
     }
 
@@ -48,10 +61,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             )
         }
         supportActionBar?.hide()
-    }
-
-    private fun setupAction(){
-        startActivity(Intent(this, RegisterActivity::class.java))
     }
 
     override fun onClick(v: View) {

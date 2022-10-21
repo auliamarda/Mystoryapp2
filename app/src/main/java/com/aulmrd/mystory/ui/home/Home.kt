@@ -5,6 +5,7 @@ import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
@@ -18,7 +19,6 @@ import com.aulmrd.mystory.adapter.ListStoryAdapter
 import com.aulmrd.mystory.databinding.ActivityHomeBinding
 import com.aulmrd.mystory.ui.detail.DetailActivity
 import com.aulmrd.mystory.ui.factory.FactoryStoryViewModel
-import com.aulmrd.mystory.ui.login.LoginActivity
 import com.aulmrd.mystory.ui.story.StoryActivity
 
 class Home : AppCompatActivity() {
@@ -31,42 +31,45 @@ class Home : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        if (applicationContext.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE){
+        setupViewModel()
+        if (applicationContext.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             binding.rvStory.layoutManager = GridLayoutManager(this, 2)
         } else {
-            binding.rvStory.layoutManager = LinearLayoutManager(this )
+            binding.rvStory.layoutManager = LinearLayoutManager(this)
         }
 
         title = "MyStory App"
-        setupViewModel()
         upload()
     }
 
-    private fun setupViewModel(){
+    private fun setupViewModel() {
         val factoryStoryViewModel: FactoryStoryViewModel = FactoryStoryViewModel.getInstance(this)
-        homeViewModel = ViewModelProvider(this, factoryStoryViewModel)[homeViewModel::class.java]
-        homeViewModel.doLogin().observe(this){
-            if (!it){
-                startActivity(Intent(this, LoginActivity::class.java))
-                finish()
-            }
-        }
+        homeViewModel = ViewModelProvider(this, factoryStoryViewModel)[HomeViewModel::class.java]
+//        homeViewModel.doLogin().observe(this){
+//            if (!it){
+//                startActivity(Intent(this, LoginActivity::class.java))
+//                finish()
+//            }
+//        }
 
-        homeViewModel.getToken().observe(this){token ->
-            if (token.isNotEmpty()){
-                homeViewModel.getStories(token).observe(this){result ->
-                    if (result != null){
-                        when(result) {
+        homeViewModel.getToken().observe(this) { token ->
+            if (token.isNotEmpty()) {
+                Toast.makeText(this, "token not empty", Toast.LENGTH_SHORT).show()
+                homeViewModel.getStories(token).observe(this) { result ->
+                    if (result != null) {
+                        when (result) {
                             is Result.Loading -> {
                                 binding.progressBar.visibility = View.VISIBLE
                             }
                             is Result.Success -> {
                                 binding.progressBar.visibility = View.GONE
                                 val stories = result.data.listStory
-                                val listStoryAdapter = ListStoryAdapter(stories as ArrayList<ListStoryItem>)
+                                val listStoryAdapter =
+                                    ListStoryAdapter(stories as ArrayList<ListStoryItem>)
                                 binding.rvStory.adapter = listStoryAdapter
 
-                                listStoryAdapter.setOnItemClickCallback(object : ListStoryAdapter.OnItemClickCallback{
+                                listStoryAdapter.setOnItemClickCallback(object :
+                                    ListStoryAdapter.OnItemClickCallback {
                                     override fun onItemCLicked(data: ListStoryItem) {
                                         showSelectedStory(data)
                                     }
@@ -74,7 +77,11 @@ class Home : AppCompatActivity() {
                             }
                             is Result.Error -> {
                                 binding.progressBar.visibility = View.GONE
-                                Toast.makeText(this, "failure : " + result.error, Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    this,
+                                    "failure : " + result.error,
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             }
                         }
                     }
@@ -83,9 +90,9 @@ class Home : AppCompatActivity() {
         }
     }
 
-    private fun upload(){
+    private fun upload() {
         with(binding) {
-            addNewStory.setOnClickListener{
+            addNewStory.setOnClickListener {
                 Intent(this@Home, StoryActivity::class.java)
                     .apply {
                         startActivity(this)
@@ -100,10 +107,19 @@ class Home : AppCompatActivity() {
         startActivity(intent)
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.item_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.logout -> {
                 homeViewModel.logout()
+                Intent(this, KeluarActivity::class.java).also {
+                    startActivity(it)
+                }
+                finishAffinity()
                 true
             }
             R.id.setting -> {

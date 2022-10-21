@@ -31,10 +31,12 @@
         style="@style/ButtonOrange"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="48dp"
         android:contentDescription="@string/add_story"
         android:src="@drawable/ic_add_24"
         app:layout_constraintBottom_toTopOf="@id/guideline6"
-        app:layout_constraintEnd_toStartOf="@id/guideline5"/>
+        app:layout_constraintEnd_toStartOf="@id/guideline5" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_Story"

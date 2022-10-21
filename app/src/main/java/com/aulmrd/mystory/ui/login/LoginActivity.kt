@@ -13,6 +13,7 @@ import com.aulmrd.mystory.MainActivity
 import com.aulmrd.mystory.ui.register.RegisterActivity
 import com.aulmrd.mystory.databinding.ActivityLoginBinding
 import com.aulmrd.mystory.ui.factory.FactoryUserViewModel
+import com.aulmrd.mystory.ui.home.Home
 
 class LoginActivity : AppCompatActivity() {
 
@@ -75,12 +76,15 @@ class LoginActivity : AppCompatActivity() {
                            }
                            is Result.Success -> {
                                showLoading(false)
+                               Toast.makeText(this, "login success! ${result.data.LoginResult?.token}", Toast.LENGTH_SHORT).show()
                                val user = result.data
-                               if(user.error == true){
-                                   Toast.makeText(this@LoginActivity, user.message, Toast.LENGTH_SHORT).show()
-                               }else{
-                                   val token = user.LoginResult?.token ?: ""
-                                   loginViewModel.setToken(token, doLogin = true)
+                               val token = user.LoginResult?.token ?: ""
+                               loginViewModel.setToken(token, doLogin = true)
+                               loginViewModel.getToken().observe(this) { token ->
+                                   if (token.isNotEmpty()) {
+                                       startActivity(Intent(this, Home::class.java))
+                                       finish()
+                                   }
                                }
                            }
                            is Result.Error -> {
@@ -97,12 +101,7 @@ class LoginActivity : AppCompatActivity() {
     private fun setupViewModel(){
         val factoryUserViewModel: FactoryUserViewModel = FactoryUserViewModel.getInstance(this)
         loginViewModel = ViewModelProvider(this, factoryUserViewModel)[LoginViewModel::class.java]
-        loginViewModel.getToken().observe(this){token ->
-            if (token.isNotEmpty()){
-                startActivity(Intent(this, MainActivity::class.java))
-                finish()
-            }
-        }
+
     }
 
     private fun showLoading(doLoading: Boolean){
@@ -114,7 +113,7 @@ class LoginActivity : AppCompatActivity() {
             if(doLoading) {
                 binding.progressBar.visibility = View.VISIBLE
             }else {
-                binding.progressBar.visibility = View.VISIBLE
+                binding.progressBar.visibility = View.GONE
             }
         }
     }

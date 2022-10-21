@@ -47,4 +47,5 @@
     <string name="button_for_capture_image">Button for capture image</string>
     <string name="switch_camera">button for switch front or rear camera</string>
     <string name="desc_photo">Description</string>
+    <string name="txt_keluar">Anda telah keluar dari MyStory App!</string>
 </resources>

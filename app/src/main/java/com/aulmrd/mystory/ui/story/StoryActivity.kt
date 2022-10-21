@@ -15,6 +15,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModelProvider
+import com.aulmrd.mystory.BuildConfig
 import com.aulmrd.mystory.data.result.Result
 import com.aulmrd.mystory.databinding.ActivityStoryBinding
 import com.aulmrd.mystory.ui.factory.FactoryStoryViewModel
@@ -141,8 +142,8 @@ class StoryActivity : AppCompatActivity() {
     private fun startTakePhoto() {
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         intent.resolveActivity(packageManager)
-        MediaUtils.createTempFile(application).also {
-            val photoURI: Uri = FileProvider.getUriForFile(this@StoryActivity, "com.aulmrd.mystory.ui.story", it)
+        MediaUtils.createTempFile(this).also {
+            val photoURI: Uri = FileProvider.getUriForFile(this@StoryActivity, "com.aulmrd.mystory", it)
             currentPhotoPath = it.absolutePath
             intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
             launcherIntentCamera.launch(intent)
