@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.aulmrd.mystory.MainActivity
 import com.aulmrd.mystory.data.response.ListStoryItem
 import com.aulmrd.mystory.data.result.Result
 import com.aulmrd.mystory.R
@@ -116,10 +117,17 @@ class Home : AppCompatActivity() {
         return when (item.itemId) {
             R.id.logout -> {
                 homeViewModel.logout()
+<<<<<<< HEAD
                 Intent(this, KeluarActivity::class.java).also {
                     startActivity(it)
                 }
                 finishAffinity()
+=======
+                Intent(this, MainActivity::class.java).also {
+                    startActivity(it)
+                }
+                finish()
+>>>>>>> 3bea60da91d362780c4f78fe89e56a33802f5273
                 true
             }
             R.id.setting -> {

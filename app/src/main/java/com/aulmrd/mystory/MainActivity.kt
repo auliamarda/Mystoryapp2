@@ -22,7 +22,10 @@ import kotlinx.coroutines.*
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var binding: ActivityMainBinding
+<<<<<<< HEAD
     private lateinit var viewModel: MainViewModel
+=======
+>>>>>>> 3bea60da91d362780c4f78fe89e56a33802f5273
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +40,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         binding.btnMasuk1.setOnClickListener(this)
         binding.btnMasuk2.setOnClickListener(this)
+<<<<<<< HEAD
 
         CoroutineScope(Dispatchers.Main).launch {
             delay(1500)
@@ -47,6 +51,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     }
             }
         }
+=======
+>>>>>>> 3bea60da91d362780c4f78fe89e56a33802f5273
 
     }
 
