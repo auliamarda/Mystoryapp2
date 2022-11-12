@@ -29,69 +29,40 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_register">
     </TextView>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_username"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <com.aulmrd.mystory.customview.MyEditText
+        android:id="@+id/et_fullname"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
         android:hint="@string/register_fullname"
-        style="@style/TextInputLayout"
-        android:layout_marginTop="50dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_register_sub_title"
-        app:startIconDrawable="@drawable/ic_username">
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_register_sub_title"
+        app:layout_constraintStart_toStartOf="@+id/tv_register_sub_title"
+        app:layout_constraintTop_toBottomOf="@id/tv_register_sub_title"
+        android:drawableStart="@drawable/ic_username"/>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_fullname"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/TextInputEditText"/>
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <com.aulmrd.mystory.customview.MyEmailCustom
+        android:id="@+id/et_email"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
         android:hint="@string/register_email"
-        style="@style/TextInputLayout"
-        android:layout_marginTop="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/til_username"
-        app:startIconDrawable="@drawable/ic_email_24">
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/et_fullname"
+        app:layout_constraintStart_toStartOf="@id/et_fullname"
+        app:layout_constraintTop_toBottomOf="@id/et_fullname"
+        android:inputType="textEmailAddress"
+        android:drawableStart="@drawable/ic_email_24" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_email"
-            style="@style/TextInputEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:textColorHint="#C62828" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_register_password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <com.aulmrd.mystory.customview.MyPassCustom
+        android:id="@+id/et_register_password"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:inputType="textPassword"
         android:hint="@string/login_password"
-        style="@style/TextInputLayout"
-        android:layout_marginTop="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/til_email"
-        app:startIconDrawable="@drawable/ic_baseline_lock_24">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_register_password"
-            style="@style/TextInputEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:textColorHint="#C62828" />
-    </com.google.android.material.textfield.TextInputLayout>
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/et_email"
+        app:layout_constraintStart_toStartOf="@id/et_email"
+        app:layout_constraintTop_toBottomOf="@id/et_email"
+        android:drawableStart="@drawable/ic_baseline_lock_24"/>
 
 
     <androidx.appcompat.widget.AppCompatButton

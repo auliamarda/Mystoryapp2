@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.login.LoginActivity"
     android:padding="20dp">
 
@@ -29,48 +30,31 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_login">
     </TextView>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/login_email"
-        android:layout_width="match_parent"
+    <com.aulmrd.mystory.customview.MyEmailCustom
+        android:id="@+id/et_email"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
         android:hint="@string/login_email"
-        style="@style/TextInputLayout"
-        android:layout_marginTop="50dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_login_sub_title"
-        app:startIconDrawable="@drawable/ic_account_circle">
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_login_sub_title"
+        app:layout_constraintStart_toStartOf="@+id/tv_login_sub_title"
+        app:layout_constraintTop_toBottomOf="@id/tv_login_sub_title"
+        android:drawableStart="@drawable/ic_account_circle" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            style="@style/TextInputEditText"/>
-    </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/login_password"
-        android:layout_width="match_parent"
+    <com.aulmrd.mystory.customview.MyPassCustom
+        android:id="@+id/et_password"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:inputType="textPassword"
         android:hint="@string/login_password"
-        style="@style/TextInputLayout"
-        android:layout_marginTop="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_email"
-        app:startIconDrawable="@drawable/ic_baseline_lock_24">
+        app:layout_constraintEnd_toEndOf="@id/et_email"
+        app:layout_constraintStart_toStartOf="@+id/et_email"
+        app:layout_constraintTop_toBottomOf="@id/et_email"
+        android:drawableStart="@drawable/ic_baseline_lock_24"/>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_password"
-            style="@style/TextInputEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:textColorHint="#C62828" />
-    </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_login"

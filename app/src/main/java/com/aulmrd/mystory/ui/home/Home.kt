@@ -9,6 +9,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import androidx.datastore.preferences.core.edit
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,9 +19,13 @@ import com.aulmrd.mystory.data.result.Result
 import com.aulmrd.mystory.R
 import com.aulmrd.mystory.adapter.ListStoryAdapter
 import com.aulmrd.mystory.databinding.ActivityHomeBinding
+import com.aulmrd.mystory.di.dataStore
 import com.aulmrd.mystory.ui.detail.DetailActivity
 import com.aulmrd.mystory.ui.factory.FactoryStoryViewModel
 import com.aulmrd.mystory.ui.story.StoryActivity
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class Home : AppCompatActivity() {
 
@@ -46,12 +51,6 @@ class Home : AppCompatActivity() {
     private fun setupViewModel() {
         val factoryStoryViewModel: FactoryStoryViewModel = FactoryStoryViewModel.getInstance(this)
         homeViewModel = ViewModelProvider(this, factoryStoryViewModel)[HomeViewModel::class.java]
-//        homeViewModel.doLogin().observe(this){
-//            if (!it){
-//                startActivity(Intent(this, LoginActivity::class.java))
-//                finish()
-//            }
-//        }
 
         homeViewModel.getToken().observe(this) { token ->
             if (token.isNotEmpty()) {
@@ -117,17 +116,16 @@ class Home : AppCompatActivity() {
         return when (item.itemId) {
             R.id.logout -> {
                 homeViewModel.logout()
-<<<<<<< HEAD
+                CoroutineScope(Dispatchers.Main).launch {
+                    dataStore.edit {
+                        it.clear()
+                    }
+                }
+
                 Intent(this, KeluarActivity::class.java).also {
                     startActivity(it)
                 }
                 finishAffinity()
-=======
-                Intent(this, MainActivity::class.java).also {
-                    startActivity(it)
-                }
-                finish()
->>>>>>> 3bea60da91d362780c4f78fe89e56a33802f5273
                 true
             }
             R.id.setting -> {

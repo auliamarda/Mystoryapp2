@@ -22,10 +22,7 @@ import kotlinx.coroutines.*
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var binding: ActivityMainBinding
-<<<<<<< HEAD
     private lateinit var viewModel: MainViewModel
-=======
->>>>>>> 3bea60da91d362780c4f78fe89e56a33802f5273
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,19 +37,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         binding.btnMasuk1.setOnClickListener(this)
         binding.btnMasuk2.setOnClickListener(this)
-<<<<<<< HEAD
-
-        CoroutineScope(Dispatchers.Main).launch {
-            delay(1500)
-            viewModel.getToken().observe(this@MainActivity) {
-                if (it != null)
-                    Intent(this@MainActivity, Home::class.java).apply {
-                        startActivity(this)
-                    }
-            }
-        }
-=======
->>>>>>> 3bea60da91d362780c4f78fe89e56a33802f5273
 
     }
 
@@ -67,6 +51,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             )
         }
         supportActionBar?.hide()
+
+
+        viewModel.getToken().observe(this@MainActivity){
+            if (it != null && it!="")
+                Intent(this@MainActivity, Home::class.java).apply {
+                    startActivity(this)
+                }
+        }
+
     }
 
     override fun onClick(v: View) {

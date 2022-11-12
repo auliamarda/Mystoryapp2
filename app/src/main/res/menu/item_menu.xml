@@ -3,15 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/logout"
-        android:icon="@drawable/ic_baseline_exit_to_app_24"
-        android:title="@string/keluar"
-        app:showAsAction="ifRoom"/>
-
+        android:id="@+id/map"
+        android:icon="@drawable/ic_baseline_map_24"
+        android:title="@string/label_maps"
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/setting"
         android:icon="@drawable/ic_settings_24"
         android:title="@string/setting"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/logout"
+        android:icon="@drawable/ic_baseline_exit_to_app_24"
+        android:title="@string/keluar"
+        app:showAsAction="ifRoom" />
 
 </menu>

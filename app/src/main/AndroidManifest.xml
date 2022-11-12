@@ -33,7 +33,7 @@
                 android:resource="@xml/provider_paths"/>
         </provider>
         <activity
-            android:name=".keluarActivity"
+            android:name=".ui.home.KeluarActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
